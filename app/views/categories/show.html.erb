@@ -3,14 +3,18 @@
   <div class='category-contents'>
     <h2 class='category-title'>カテゴリー一覧</h2>
     <ul class='category-box'>
+      <%# ①全てのカテゴリーが表示されるようにしてください %>
+      <%# ②カテゴリーがクリックされたらcategories/show.html.erbが表示されるようにしてください %>
       <li class='category-box__list'><%= link_to("カテゴリー1","/")%></li>
       <li class='category-box__list'><%= link_to("カテゴリー2","/")%></li>
       <li class='category-box__list'><%= link_to("カテゴリー3","/")%></li>
     </ul>
   </div>
   <div class='item-contents'>
+    <%# 現在選択されているカテゴリーに合わせて表示名を変えてください %>
     <h2 class='title'>メンズの商品</h2>
     <ul class='item-lists'>
+      <%# 現在選択されているカテゴリーに合わせて表示する商品を変えてください %>
       <% if @items[0] != nil%>
       <% @items.each do |item|%>
       <li class='list'>
