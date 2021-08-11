@@ -1,0 +1,49 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <div class='category-contents'>
+    <h2 class='category-title'>カテゴリー一覧</h2>
+    <ul class='category-box'>
+      <li class='category-box__list'><%= link_to("カテゴリー1","/")%></li>
+      <li class='category-box__list'><%= link_to("カテゴリー2","/")%></li>
+      <li class='category-box__list'><%= link_to("カテゴリー3","/")%></li>
+    </ul>
+  </div>
+  <div class='item-contents'>
+    <h2 class='title'>メンズの商品</h2>
+    <ul class='item-lists'>
+      <% if @items[0] != nil%>
+      <% @items.each do |item|%>
+      <li class='list'>
+        <%= link_to item_path(item) do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+          <% if item.order != nil %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.shipping_fee_status.fee %></span>
+            <div class='star-btn'>
+              <%= image_tag "star-icon.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<%= link_to(new_item_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<% end %>
+<%= render "shared/footer" %>

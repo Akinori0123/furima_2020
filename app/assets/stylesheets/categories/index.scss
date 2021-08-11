@@ -1,0 +1,21 @@
+.category-contents{
+  padding: 5vh 15vw;
+  background-color: white;
+  .category-title {
+    font-size: 5vh;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+  }
+  .category-box {
+    display: flex;
+    margin-top: 1vh;
+    &__list {
+      margin-right: 10px;
+      font-size: 3vh;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
