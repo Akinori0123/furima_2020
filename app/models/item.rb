@@ -39,4 +39,5 @@ class Item < ApplicationRecord
   # <<アソシエーション>>
   belongs_to :user
   has_one :order
+  has_one :buyed_user, through: :order, source: :user
 end

@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const params = path.replace(/items/g, '').replace(/orders/g, '').replace(/\//g, '');
 
   if (path.includes("items") && path.includes("orders") && /^([1-9]\d*|0)$/.test(params)) {
-    const PAYJP_PK = process.env.PAYJP_PK
+    const PAYJP_PK = "pk_test_f25d5194aea7043cd8f2011b"
     Payjp.setPublicKey(PAYJP_PK);
     const submit = document.getElementById("button");
 

@@ -23,6 +23,11 @@ class User < ApplicationRecord
   end
 
   # <<アソシエーション>>
-  has_many :items
   has_many :orders
+
+  #出品した商品とのアソシエーション
+  has_many :items
+
+  #購入した商品とのアソシエーション
+  has_many :buyed_items, through: :orders, source: :item
 end

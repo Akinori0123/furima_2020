@@ -57,7 +57,8 @@ class ItemsController < ApplicationController
       :shipping_fee_status_id,
       :prefecture_id,
       :scheduled_delivery_id,
-      :price
+      :price,
+      images: []
     ).merge(user_id: current_user.id)
   end
 
