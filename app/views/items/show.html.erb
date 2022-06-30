@@ -19,7 +19,7 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%# @item.shipping_fee_status.fee %>
+        <%= @item.shipping_fee_status.fee %>
       </span>
     </div>
     <% if user_signed_in? && @item.order == nil%>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%# @item.shipping_fee_status.fee %></td>
+          <td class="detail-value"><%= @item.shipping_fee_status.fee %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>

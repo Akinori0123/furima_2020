@@ -5,8 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
-    # render :json => @items
-    binding.pry
   end
 
   def new
@@ -40,12 +38,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path @item.destroy
-    # if @item.destroy
-    #   return redirect_to root_path
-    # else
-    #   render 'show'
-    # end
+    if @item.destroy
+      return redirect_to root_path
+    else
+      render 'show'
+    end
   end
 
   private
