@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   # 値が入っているか検証
   with_options presence: true do
     validates :image
+    validates :image
     validates :name
     validates :info
     validates :price

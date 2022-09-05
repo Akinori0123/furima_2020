@@ -19,7 +19,7 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= @item.shipping_fee_status.fee %>
+        <%= "配送料負担" %>
       </span>
     </div>
     <% if user_signed_in? && @item.order == nil%>
