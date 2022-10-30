@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :redirect_to_show, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.order(created_at: :desc)
   end
 
   def new
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
       :prefecture_id,
       :scheduled_delivery_id,
       :price,
-      images: []
+      images: [] #これは指摘しなくてOKです！
     ).merge(user_id: current_user.id)
   end
 
@@ -65,6 +65,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_to_show
-    return redirect_to root_path if current_user.id != @item.user.id
+    return redirect_to root_path if current_user.id != @item.user.id || @item.order != nil
   end
 end
