@@ -68,3 +68,7 @@ gem "payjp"
 gem "pry-rails"
 # gem "rails-i18n"
 gem 'uglifier', '~> 2.7'
+
+group :production do
+  gem 'pg'
+end
