@@ -74,3 +74,4 @@ group :production do
 end
 
 #test
+gem 'mail', '2.7.1'
