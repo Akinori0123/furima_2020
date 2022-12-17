@@ -74,7 +74,7 @@ gem 'uglifier', '~> 2.7'
 # end
 
 #test
-gem 'mail', '2.7.1'
+# gem 'mail', '2.7.1'
 
 group :production do
   gem 'unicorn', '5.4.1'
