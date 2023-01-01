@@ -64,6 +64,7 @@
 | Column        | Type       | Options                        |
 | --------      | ---------- | ------------------------------ |
 | order         | references | null: false, foreign_key: true |
+|                  |            |              半角数値のみ保存可能
 | postcode      | string     | null: false, 「3桁ハイフン4桁」の半角文字列のみ保存可能   |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
