@@ -12,6 +12,7 @@
 | first_name_kana    | string | null: false, 全角（カタカナ）での入力必須  |
 | family_name_kana   | string | null: false, 全角（カタカナ）での入力必須  |
 | birth_day          | date   | null: false                           |
+|                  |            |              半角数値のみ保存可能
 
 
 ### Association
@@ -48,6 +49,7 @@
 | --------  | ---------- | ------------------------------ |
 | item      | references | null: false, foreign_key: true |
 | user      | references | null: false, foreign_key: true |
+|                  |            |              半角数値のみ保存可能
 
 
 ### Association
@@ -68,6 +70,7 @@
 | block         | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | string     | null: false, 10桁以上11桁以内の半角数値のみ保存可能(ハイフン不可)  |
+|                  |            |              半角数値のみ保存可能
 
 
 ### Association
