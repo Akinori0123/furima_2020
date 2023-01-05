@@ -21,11 +21,10 @@ const pay = ()=> {
         const tokenObj = `<input value=${token} type="hidden" name='pay_form[token]'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      console.log(response)
       // document.getElementById("card_number").removeAttribute("name");
       // document.getElementById("card_expiry").removeAttribute("name");
       // document.getElementById("card_cvc").removeAttribute("name");
-      // document.getElementById("charge-form").submit();
+      document.getElementById("charge-form").submit();
     });
   })
 }
