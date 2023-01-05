@@ -14,17 +14,18 @@ const pay = ()=> {
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     payjp.createToken(numberElement).then(function (response) {
-      if (response.status === 402) {
+      if (response.error) {
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='pay_form[token]'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
+      console.log(response)
       // document.getElementById("card_number").removeAttribute("name");
       // document.getElementById("card_expiry").removeAttribute("name");
       // document.getElementById("card_cvc").removeAttribute("name");
-      document.getElementById("charge-form").submit();
+      // document.getElementById("charge-form").submit();
     });
   })
 }
