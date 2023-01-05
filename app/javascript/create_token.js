@@ -1,50 +1,34 @@
-window.addEventListener("DOMContentLoaded", () => {
+const pay = ()=> {
+  Payjp.setPublicKey("pk_test_XXXXXXXXXX");　// PAY.JPテスト公開鍵
+  const form = document.getElementById("charge-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  // 決済処理を許可するurlは</items/:id/transactions>の場合です。
-  const path = location.pathname
-  const params = path.replace(/items/g, '').replace(/orders/g, '').replace(/\//g, '');
+    const formResult = document.getElementById("charge-form");
+    const formData = new FormData(formResult);
+    const card = {
+      number: formData.get("number"),
+      cvc: formData.get("cvc"),
+      exp_month: formData.get("exp_month"),
+      exp_year: `20${formData.get("exp_year")}`,
+    };
+    console.log(card);
 
-  if (path.includes("items") && path.includes("orders") && /^([1-9]\d*|0)$/.test(params)) {
-    const PAYJP_PK = "pk_test_f25d5194aea7043cd8f2011b"
-    Payjp.setPublicKey(PAYJP_PK);
-    const submit = document.getElementById("button");
-
-    submit.addEventListener("click", (e) => {
-      e.preventDefault();
-      const sendWithoutCardInfo = () => {
-        document.getElementById("card-number").removeAttribute("name");
-        document.getElementById("card-cvc").removeAttribute("name");
-        document.getElementById("card-exp-month").removeAttribute("name");
-        document.getElementById("card-exp-year").removeAttribute("name");
-        document.getElementById("charge-form").submit();
-        document.getElementById("charge-form").reset();
+    Payjp.createToken(card, (status, response) => {
+      if (status == 200) {
+        const token = response.id;
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      const formResult = document.getElementById("charge-form");
-      const formData = new FormData(formResult);
+      document.getElementById("number").removeAttribute("name");
+      document.getElementById("cvc").removeAttribute("name");
+      document.getElementById("exp_month").removeAttribute("name");
+      document.getElementById("exp_year").removeAttribute("name");
 
-      // カード情報の構成や、トークン生成はこちらのリファレンスを参照
-      // https://pay.jp/docs/payjs-v1
-      const card = {
-        number: formData.get("pay_form[number]"),
-        cvc: formData.get("pay_form[cvc]"),
-        exp_month: formData.get("pay_form[exp_month]"),
-        exp_year: `20${formData.get("pay_form[exp_year]")}`,
-      };
+      // document.getElementById("charge-form").submit();
+    })
+  })
+}
 
-      Payjp.createToken(card, (status, response) => {
-        if (status === 200) {
-          // response.idでtokenが取得できます。
-          const token = response.id;
-          const renderDom = document.getElementById("charge-form");
-          // サーバーにトークン情報を送信するために、inputタグをhidden状態で追加します。
-          const tokenObj = `<input value=${token} type="hidden" name='pay_form[token]'>`;
-          renderDom.insertAdjacentHTML("beforeend", tokenObj);
-          sendWithoutCardInfo()
-        } else {
-          // window.alert('購入処理に失敗しました。\nお手数ですが最初からやり直してください。');
-          sendWithoutCardInfo()
-        }
-      });
-    });
-  }
-});
+window.addEventListener("load", pay);
