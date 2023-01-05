@@ -6,7 +6,6 @@ const pay = ()=> {
   var expiryElement = elements.create('cardExpiry');
   var cvcElement = elements.create('cardCvc');
 
-  // ビューに作成した空のdivタグのid名を指定。これにより画面上に入力欄が作られる
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
