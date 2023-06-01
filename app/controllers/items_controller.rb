@@ -24,8 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return redirect_to root_path if @item.order != nil
-    redirect_to root_path if current_user.id != @item.user.id || @item.order != nil
+
+    redirect_to root_path if current_user.id != @item.user.id
   end
 
   def update
@@ -66,6 +66,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_to_show
-    return redirect_to root_path if current_user.id != @item.user.id || @item.order != nil
+    return redirect_to root_path if current_user.id != @item.user.id
   end
 end
