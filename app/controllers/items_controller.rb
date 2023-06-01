@@ -63,7 +63,6 @@ class ItemsController < ApplicationController
 
   def select_item
     @item = Item.find(params[:id])
-    redirect_to root_path if current_user.id != @item.user.id
   end
 
   def redirect_to_show
