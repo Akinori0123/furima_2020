@@ -11,6 +11,7 @@ class PayForm
     validates :city
     validates :addresses
     validates :phone_number
+    
     validates 
     :user_id
   end
