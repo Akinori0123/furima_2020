@@ -11,8 +11,7 @@ class PayForm
     validates :city
     validates :addresses
     validates :phone_number
-    validates 
-    :user_id
+    validates :user_id
   end
   
   validates :phone_number, length: { minimum: 10, message: 'is too short' }
