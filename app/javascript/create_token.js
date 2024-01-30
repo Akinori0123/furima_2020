@@ -1,34 +1,32 @@
-const pay = ()=> {
-  Payjp.setPublicKey("pk_test_f25d5194aea7043cd8f2011b");　// PAY.JPテスト公開鍵
-  const form = document.getElementById("charge-form");
+const pay = () => {
+  const payjp = Payjp("pk_test_f25d5194aea7043cd8f2011b")// PAY.JPテスト公開鍵
+  const elements = payjp.elements();
+  const numberElement = elements.create('cardNumber');
+  const expiryElement = elements.create('cardExpiry');
+  const cvcElement = elements.create('cardCvc');
+
+  numberElement.mount('#number-form');
+  expiryElement.mount('#expiry-form');
+  cvcElement.mount('#cvc-form');
+
+  const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const formResult = document.getElementById("charge-form");
-    const formData = new FormData(formResult);
-    const card = {
-      number: formData.get("number"),
-      cvc: formData.get("cvc"),
-      exp_month: formData.get("exp_month"),
-      exp_year: `20${formData.get("exp_year")}`,
-    };
-    console.log(card);
-
-    Payjp.createToken(card, (status, response) => {
-      if (status == 200) {
+    payjp.createToken(numberElement).then(function (response) {
+      if (response.error) {
+      } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      document.getElementById("number").removeAttribute("name");
-      document.getElementById("cvc").removeAttribute("name");
-      document.getElementById("exp_month").removeAttribute("name");
-      document.getElementById("exp_year").removeAttribute("name");
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
+    });
+    e.preventDefault();
+  });
+};
 
-      // document.getElementById("charge-form").submit();
-    })
-  })
-}
+window.addEventListener("turbo:load", pay);
 
-window.addEventListener("load", pay);
